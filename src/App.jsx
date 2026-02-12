@@ -18,14 +18,29 @@ function App() {
     setData(datat.filter((d) => +d.attacksCount  === +e.target.value));
   }
     function filteractiv() {
+ 
     setData(datat.filter((d) => d.status  === 'active'));
+  }
+   function filterq() {
+ 
+    setData(datat.filter((d) => d.status  === 'quiet'));
+  }
+     function filterd() {
+ 
+    setData(datat.filter((d) => d.status  === 'dead'));
+  }
+       function filterA() {
+ 
+    setData(datat.filter((d) => d.status  === 'agent'));
   }
   return (
     <>
       <Input setInput={setFilteredData} data={datat} onChnage={searchByName} namee="name" />
       <Input setInput={setFilteredData} data={datat} onChnage={serchNumberofattacks} namee="number"/>
-      <Butten setInput={setFilteredData} data={datat} onChnage={filteractiv} namee="active"/>
-
+      <Butten setInput={setFilteredData} data={datat} onClick={filteractiv} namee="active"/>
+      <Butten setInput={setFilteredData} data={datat} onClick={filterq} namee="quiet"/>
+      <Butten setInput={setFilteredData} data={datat} onClick={filterd} namee="dead"/>
+      <Butten setInput={setFilteredData} data={datat} onClick={filterA} namee="agent"/>
       <Table data={datat} />
     </>
   );

@@ -1,6 +1,6 @@
 
-export default function Butten({ onChnage , namee}) {
+export default function Butten({ onClick , namee}) {
   return (
-     <button onChange={onChnage}>{namee}</button>
+     <button onClick={onClick} >{namee}</button>
   )
 }

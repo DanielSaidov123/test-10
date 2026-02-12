@@ -1,19 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import data from '../terrorists_data.json'
-import Table from './components/table'
+import { useState } from "react";
+import "./App.css";
+import data from "../terrorists_data.json";
+import Table from "./components/table";
+import Input from "./components/input";
+import Butten from "./components/Butten";
 
 function App() {
-  const [datat, setData] = useState(data)
-  
+  const [datat, setData] = useState(data);
+
+  const [filteredData, setFilteredData] = useState();
+
+  function searchByName(e) {
+    setData(datat.filter((d) => d.name === e.target.value));
+  }
+
+    function serchNumberofattacks(e) {
+    setData(datat.filter((d) => +d.attacksCount  === +e.target.value));
+  }
+    function filteractiv() {
+    setData(datat.filter((d) => d.status  === 'active'));
+  }
   return (
     <>
-    <Table key={1000} name="name" attacksCount='attacksCount' img='img' organization='organization' summary='summary'  status= 'status'/>
-    {datat.map((s,i)=><Table key={i} name={s.name} attacksCount={s.attacksCount} img={s.imageUrl?s.imageUrl:"https://picsum.photos/400/400?random=3"} organization={s.organization} summary={s.relationToIsraelSummary} status={s.status}/>)}
+      <Input setInput={setFilteredData} data={datat} onChnage={searchByName} namee="name" />
+      <Input setInput={setFilteredData} data={datat} onChnage={serchNumberofattacks} namee="number"/>
+      <Butten setInput={setFilteredData} data={datat} onChnage={filteractiv} namee="active"/>
+
+      <Table data={datat} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
